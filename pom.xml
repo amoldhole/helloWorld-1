@@ -3,18 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.qaagility.javaee</groupId>
 	<artifactId>HelloWorldJava</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>Hello World Java</name>
 	<description>Learn Java JSP and Servlet</description>
 
 	<dependencies>
-		<!-- Unit Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
-		</dependency>		
+			<version>${junit.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -52,16 +51,52 @@
   				<groupId>org.eclipse.jetty</groupId>
   				<artifactId>jetty-maven-plugin</artifactId>
   				<version>9.4.6.v20170531</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+					<check>
+						<haltOnFailure>false</haltOnFailure>
+						<lineRate>95</lineRate>
+						<branchRate>95</branchRate>
+						<totalLineRate>95</totalLineRate>
+						<totalBranchRate>95</totalBranchRate>
+					</check>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>			
 		</plugins>
 	</build>
-	
-<distributionManagement>
-    <snapshotRepository>
-        <id>snapshots</id>
-        <name>devops-training-snapshots</name>
-        <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
-    </snapshotRepository>
-</distributionManagement>	
-	
+
+	<reporting>
+    		<plugins>
+			 <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+		      </plugin>
+	    </plugins>
+	  </reporting>
+
+	<distributionManagement>
+    		<snapshotRepository>
+		        <id>snapshots</id>
+		        <name>devops-training-snapshots</name>
+		        <url>http://localhost:8081/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
